@@ -45,6 +45,6 @@ export function translateCardinalPoint(point: string): string {
     case 'NW':  return '북서';
     case 'NNW': return '북북서';
     default:
-      return point;
+      return '-';
   }
 }
