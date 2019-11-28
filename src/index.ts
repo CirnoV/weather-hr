@@ -1,8 +1,8 @@
 import Koa from 'koa';
 import schedule from 'node-schedule';
-import { getAWSWeather, AWSLocation, AWS } from './aws';
+import { getAWSWeather, AWS } from './aws';
 import { getForestfire, forestFireUri } from './forestfire';
-import { getAirGangwonData, airGangWonUri } from './airgangwon';
+import { getAirGangwonData } from './airgangwon';
 
 interface IWeatherData {
   집계시각: number;
