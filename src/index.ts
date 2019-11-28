@@ -19,15 +19,13 @@ interface IWeatherData {
 }
 let weatherData: IWeatherData[] = [];
 
-let initialData: boolean = false;
-
 async function getWeather() {
-  if (initialData) {
+  const curTime = new Date();
+
+  if (weatherData.length > 0 && curTime.getHours() === new Date(weatherData[weatherData.length - 1].집계시각).getHours()) {
     weatherData.pop();
-    initialData = false;
   }
 
-  const curTime = new Date();
   let [awsData, forestFire, {pm10, pm25}] = await Promise.all([
     getAWSWeather(curTime),
     getForestfire(),
@@ -54,12 +52,12 @@ async function getWeather() {
   weatherData = [...weatherData.slice(weatherData.length - 72), result];
 }
 
-schedule.scheduleJob('45 * * * *', getWeather);
-getWeather().then(() => initialData = true);
+schedule.scheduleJob('*/3 * * * *', getWeather);
+getWeather();
 
 const app = new Koa();
 
-app.use((ctx) => {
+app.use(async (ctx) => {
   ctx.set('Access-Control-Allow-Origin', '*');
   ctx.body = JSON.stringify(weatherData);
 });
