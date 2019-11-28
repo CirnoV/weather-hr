@@ -54,7 +54,7 @@ async function getWeather() {
   weatherData = [...weatherData.slice(weatherData.length - 72), result];
 }
 
-schedule.scheduleJob('50 * * * *', getWeather);
+schedule.scheduleJob('45 * * * *', getWeather);
 getWeather().then(() => initialData = true);
 
 const app = new Koa();
