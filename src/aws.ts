@@ -44,12 +44,6 @@ export async function getAWSWeather(date: Date): Promise<AWS[]> {
     AWSLocation.향로봉,
   ];
 
-  // const awsData: AWS[] = [];
-  // for (let i = 0; i < awsLocations.length; i++) {
-  //   const loc = awsLocations[i];
-  //   const aws = await getWeather(date, loc);
-  //   awsData.push(aws);
-  // }
   const awsData: AWS[] = await Promise.all(awsLocations.map(loc => getWeather(date, loc)));
 
   return awsData;

@@ -28,9 +28,11 @@ async function getWeather() {
   }
 
   const curTime = new Date();
-  const awsData = await getAWSWeather(curTime);
-  const forestFire = await getForestfire();
-  let {pm10, pm25} = await getAirGangwonData();
+  let [awsData, forestFire, {pm10, pm25}] = await Promise.all([
+    getAWSWeather(curTime),
+    getForestfire(),
+    getAirGangwonData(),
+  ]);
   pm10 = Number(pm10);
   pm10 = Number.isNaN(pm10) ? 'NULL' : pm10;
   pm25 = Number(pm25);
