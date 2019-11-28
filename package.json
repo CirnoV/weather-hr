@@ -1,6 +1,6 @@
 {
   "name": "weather-hr",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": "https://github.com/CirnoV/weather-hr",
@@ -8,17 +8,26 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node ./dist/index.js",
+    "test": "jest"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "iconv-lite": "^0.5.0",
+    "koa": "^2.11.0",
+    "node-schedule": "^1.3.2",
     "request": "^2.88.0"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.14",
+    "@types/jest": "^24.0.23",
+    "@types/koa": "^2.0.52",
     "@types/node": "^12.12.8",
+    "@types/node-schedule": "^1.2.4",
     "@types/request": "^2.48.3",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
     "typescript": "^3.7.2"
   },
   "files": [
