@@ -74,10 +74,10 @@ async function getWeather(date: Date, location: AWSLocation): Promise<AWS> {
   const html = iconv.decode(strContents, 'EUC-KR');
   const $ = cheerio.load(html);
   let tbody = $('body > table > tbody > tr > td > table > tbody');
-  const filterbody = tbody.children().filter((index, element) => {
-    return !element.children.some(child => {
-      const text = cheerioToStr(child);
-      return text === ' ' || text === '.';
+  const filterbody = tbody.children().filter((_index, element) => {
+    return !element.children.slice(1).every((child) => {
+      const text = cheerioToStr(child).trim();
+      return text === '' || text === '.' || text === '-';
     });
   });
   const rawData = $(filterbody[1]).children();
